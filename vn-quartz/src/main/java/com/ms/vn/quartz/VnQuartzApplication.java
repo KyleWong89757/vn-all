@@ -1,0 +1,14 @@
+package com.ms.vn.quartz;
+
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.context.annotation.ComponentScan;
+
+@SpringBootApplication
+@ComponentScan(basePackages = {"com.ms.vn"})
+public class VnQuartzApplication {
+
+    public static void main(String[] args) {
+        SpringApplication.run(VnQuartzApplication.class, args);
+    }
+}

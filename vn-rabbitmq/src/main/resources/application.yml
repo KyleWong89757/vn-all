@@ -1,0 +1,22 @@
+spring:
+  rabbitmq:
+    host: localhost
+    port: 5672
+    username: guest
+    password: guest
+    publisher-confirms: true    #  消息发送到交换机确认机制,是否确认回调
+    publisher-returns: true  #  消息发送到交换机确认机制,是否返回回馈
+    virtual-host: / #默认主机
+
+#自定义参数
+defineProps:
+  rabbitmq:
+    topic: vn.topic #消息交换机的名字
+    queue: vn.queue
+    # *表号匹配一个word，#匹配多个word和路径，路径之间通过.隔开
+    queue1_pattern: vn.north.#
+    # *表号匹配一个word，#匹配多个word和路径，路径之间通过.隔开
+    queue2_pattern: vn.south.#
+    queuename:
+      north: north-queue
+      south: south-queue
