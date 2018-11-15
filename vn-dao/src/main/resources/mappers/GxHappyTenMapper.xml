@@ -1,0 +1,317 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ms.vn.vndao.dao.GxHappyTenMapper">
+  <resultMap id="BaseResultMap" type="com.ms.vn.vndao.model.GxHappyTen">
+    <constructor>
+      <idArg column="id" javaType="java.lang.Long" jdbcType="BIGINT" />
+      <arg column="draw_count" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="draw_issue" javaType="java.lang.Long" jdbcType="BIGINT" />
+      <arg column="draw_time" javaType="java.util.Date" jdbcType="TIMESTAMP" />
+      <arg column="enable" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="pre_draw_code" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="pre_draw_date" javaType="java.util.Date" jdbcType="DATE" />
+      <arg column="pre_draw_issue" javaType="java.lang.Long" jdbcType="BIGINT" />
+      <arg column="pre_draw_time" javaType="java.util.Date" jdbcType="TIMESTAMP" />
+      <arg column="alarm_status" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="code_source" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="create_time" javaType="java.util.Date" jdbcType="TIMESTAMP" />
+      <arg column="draw_status" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="next_draw_issue_status" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="over_draw_time" javaType="java.util.Date" jdbcType="TIMESTAMP" />
+      <arg column="prepare_draw_time" javaType="java.util.Date" jdbcType="TIMESTAMP" />
+      <arg column="update_time" javaType="java.util.Date" jdbcType="TIMESTAMP" />
+      <arg column="first_dragon_tiger" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="last_big_small" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="sum_big_small" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="sum_num" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="sum_single_double" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="ignore_analysis_flag" javaType="java.lang.Integer" jdbcType="INTEGER" />
+    </constructor>
+  </resultMap>
+  <!-- 开启基于redis的二级缓存 -->
+  <cache type="com.ms.vn.vndao.config.RedisCache"/>
+  <sql id="Base_Column_List">
+    id, draw_count, draw_issue, draw_time, enable, pre_draw_code, pre_draw_date, pre_draw_issue, 
+    pre_draw_time, alarm_status, code_source, create_time, draw_status, next_draw_issue_status, 
+    over_draw_time, prepare_draw_time, update_time, first_dragon_tiger, last_big_small, 
+    sum_big_small, sum_num, sum_single_double, ignore_analysis_flag
+  </sql>
+  <select id="selectGxHappyTenList" resultMap="BaseResultMap">
+    SELECT
+    <include refid="Base_Column_List"/>
+    FROM
+    base_gx_happyten
+  </select>
+
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from base_gx_happyten
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from base_gx_happyten
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.ms.vn.vndao.model.GxHappyTen">
+    insert into base_gx_happyten (id, draw_count, draw_issue, 
+      draw_time, enable, pre_draw_code, 
+      pre_draw_date, pre_draw_issue, pre_draw_time, 
+      alarm_status, code_source, create_time, 
+      draw_status, next_draw_issue_status, over_draw_time, 
+      prepare_draw_time, update_time, first_dragon_tiger, 
+      last_big_small, sum_big_small, sum_num, 
+      sum_single_double, ignore_analysis_flag)
+    values (#{id,jdbcType=BIGINT}, #{drawCount,jdbcType=INTEGER}, #{drawIssue,jdbcType=BIGINT}, 
+      #{drawTime,jdbcType=TIMESTAMP}, #{enable,jdbcType=INTEGER}, #{preDrawCode,jdbcType=VARCHAR}, 
+      #{preDrawDate,jdbcType=DATE}, #{preDrawIssue,jdbcType=BIGINT}, #{preDrawTime,jdbcType=TIMESTAMP}, 
+      #{alarmStatus,jdbcType=INTEGER}, #{codeSource,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, 
+      #{drawStatus,jdbcType=INTEGER}, #{nextDrawIssueStatus,jdbcType=INTEGER}, #{overDrawTime,jdbcType=TIMESTAMP}, 
+      #{prepareDrawTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP}, #{firstDragonTiger,jdbcType=INTEGER}, 
+      #{lastBigSmall,jdbcType=INTEGER}, #{sumBigSmall,jdbcType=INTEGER}, #{sumNum,jdbcType=INTEGER}, 
+      #{sumSingleDouble,jdbcType=INTEGER}, #{ignoreAnalysisFlag,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="com.ms.vn.vndao.model.GxHappyTen">
+    insert into base_gx_happyten
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="drawCount != null">
+        draw_count,
+      </if>
+      <if test="drawIssue != null">
+        draw_issue,
+      </if>
+      <if test="drawTime != null">
+        draw_time,
+      </if>
+      <if test="enable != null">
+        enable,
+      </if>
+      <if test="preDrawCode != null">
+        pre_draw_code,
+      </if>
+      <if test="preDrawDate != null">
+        pre_draw_date,
+      </if>
+      <if test="preDrawIssue != null">
+        pre_draw_issue,
+      </if>
+      <if test="preDrawTime != null">
+        pre_draw_time,
+      </if>
+      <if test="alarmStatus != null">
+        alarm_status,
+      </if>
+      <if test="codeSource != null">
+        code_source,
+      </if>
+      <if test="createTime != null">
+        create_time,
+      </if>
+      <if test="drawStatus != null">
+        draw_status,
+      </if>
+      <if test="nextDrawIssueStatus != null">
+        next_draw_issue_status,
+      </if>
+      <if test="overDrawTime != null">
+        over_draw_time,
+      </if>
+      <if test="prepareDrawTime != null">
+        prepare_draw_time,
+      </if>
+      <if test="updateTime != null">
+        update_time,
+      </if>
+      <if test="firstDragonTiger != null">
+        first_dragon_tiger,
+      </if>
+      <if test="lastBigSmall != null">
+        last_big_small,
+      </if>
+      <if test="sumBigSmall != null">
+        sum_big_small,
+      </if>
+      <if test="sumNum != null">
+        sum_num,
+      </if>
+      <if test="sumSingleDouble != null">
+        sum_single_double,
+      </if>
+      <if test="ignoreAnalysisFlag != null">
+        ignore_analysis_flag,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="drawCount != null">
+        #{drawCount,jdbcType=INTEGER},
+      </if>
+      <if test="drawIssue != null">
+        #{drawIssue,jdbcType=BIGINT},
+      </if>
+      <if test="drawTime != null">
+        #{drawTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="enable != null">
+        #{enable,jdbcType=INTEGER},
+      </if>
+      <if test="preDrawCode != null">
+        #{preDrawCode,jdbcType=VARCHAR},
+      </if>
+      <if test="preDrawDate != null">
+        #{preDrawDate,jdbcType=DATE},
+      </if>
+      <if test="preDrawIssue != null">
+        #{preDrawIssue,jdbcType=BIGINT},
+      </if>
+      <if test="preDrawTime != null">
+        #{preDrawTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="alarmStatus != null">
+        #{alarmStatus,jdbcType=INTEGER},
+      </if>
+      <if test="codeSource != null">
+        #{codeSource,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="drawStatus != null">
+        #{drawStatus,jdbcType=INTEGER},
+      </if>
+      <if test="nextDrawIssueStatus != null">
+        #{nextDrawIssueStatus,jdbcType=INTEGER},
+      </if>
+      <if test="overDrawTime != null">
+        #{overDrawTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="prepareDrawTime != null">
+        #{prepareDrawTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null">
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="firstDragonTiger != null">
+        #{firstDragonTiger,jdbcType=INTEGER},
+      </if>
+      <if test="lastBigSmall != null">
+        #{lastBigSmall,jdbcType=INTEGER},
+      </if>
+      <if test="sumBigSmall != null">
+        #{sumBigSmall,jdbcType=INTEGER},
+      </if>
+      <if test="sumNum != null">
+        #{sumNum,jdbcType=INTEGER},
+      </if>
+      <if test="sumSingleDouble != null">
+        #{sumSingleDouble,jdbcType=INTEGER},
+      </if>
+      <if test="ignoreAnalysisFlag != null">
+        #{ignoreAnalysisFlag,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.ms.vn.vndao.model.GxHappyTen">
+    update base_gx_happyten
+    <set>
+      <if test="drawCount != null">
+        draw_count = #{drawCount,jdbcType=INTEGER},
+      </if>
+      <if test="drawIssue != null">
+        draw_issue = #{drawIssue,jdbcType=BIGINT},
+      </if>
+      <if test="drawTime != null">
+        draw_time = #{drawTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="enable != null">
+        enable = #{enable,jdbcType=INTEGER},
+      </if>
+      <if test="preDrawCode != null">
+        pre_draw_code = #{preDrawCode,jdbcType=VARCHAR},
+      </if>
+      <if test="preDrawDate != null">
+        pre_draw_date = #{preDrawDate,jdbcType=DATE},
+      </if>
+      <if test="preDrawIssue != null">
+        pre_draw_issue = #{preDrawIssue,jdbcType=BIGINT},
+      </if>
+      <if test="preDrawTime != null">
+        pre_draw_time = #{preDrawTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="alarmStatus != null">
+        alarm_status = #{alarmStatus,jdbcType=INTEGER},
+      </if>
+      <if test="codeSource != null">
+        code_source = #{codeSource,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="drawStatus != null">
+        draw_status = #{drawStatus,jdbcType=INTEGER},
+      </if>
+      <if test="nextDrawIssueStatus != null">
+        next_draw_issue_status = #{nextDrawIssueStatus,jdbcType=INTEGER},
+      </if>
+      <if test="overDrawTime != null">
+        over_draw_time = #{overDrawTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="prepareDrawTime != null">
+        prepare_draw_time = #{prepareDrawTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null">
+        update_time = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="firstDragonTiger != null">
+        first_dragon_tiger = #{firstDragonTiger,jdbcType=INTEGER},
+      </if>
+      <if test="lastBigSmall != null">
+        last_big_small = #{lastBigSmall,jdbcType=INTEGER},
+      </if>
+      <if test="sumBigSmall != null">
+        sum_big_small = #{sumBigSmall,jdbcType=INTEGER},
+      </if>
+      <if test="sumNum != null">
+        sum_num = #{sumNum,jdbcType=INTEGER},
+      </if>
+      <if test="sumSingleDouble != null">
+        sum_single_double = #{sumSingleDouble,jdbcType=INTEGER},
+      </if>
+      <if test="ignoreAnalysisFlag != null">
+        ignore_analysis_flag = #{ignoreAnalysisFlag,jdbcType=INTEGER},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.ms.vn.vndao.model.GxHappyTen">
+    update base_gx_happyten
+    set draw_count = #{drawCount,jdbcType=INTEGER},
+      draw_issue = #{drawIssue,jdbcType=BIGINT},
+      draw_time = #{drawTime,jdbcType=TIMESTAMP},
+      enable = #{enable,jdbcType=INTEGER},
+      pre_draw_code = #{preDrawCode,jdbcType=VARCHAR},
+      pre_draw_date = #{preDrawDate,jdbcType=DATE},
+      pre_draw_issue = #{preDrawIssue,jdbcType=BIGINT},
+      pre_draw_time = #{preDrawTime,jdbcType=TIMESTAMP},
+      alarm_status = #{alarmStatus,jdbcType=INTEGER},
+      code_source = #{codeSource,jdbcType=VARCHAR},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      draw_status = #{drawStatus,jdbcType=INTEGER},
+      next_draw_issue_status = #{nextDrawIssueStatus,jdbcType=INTEGER},
+      over_draw_time = #{overDrawTime,jdbcType=TIMESTAMP},
+      prepare_draw_time = #{prepareDrawTime,jdbcType=TIMESTAMP},
+      update_time = #{updateTime,jdbcType=TIMESTAMP},
+      first_dragon_tiger = #{firstDragonTiger,jdbcType=INTEGER},
+      last_big_small = #{lastBigSmall,jdbcType=INTEGER},
+      sum_big_small = #{sumBigSmall,jdbcType=INTEGER},
+      sum_num = #{sumNum,jdbcType=INTEGER},
+      sum_single_double = #{sumSingleDouble,jdbcType=INTEGER},
+      ignore_analysis_flag = #{ignoreAnalysisFlag,jdbcType=INTEGER}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+</mapper>
