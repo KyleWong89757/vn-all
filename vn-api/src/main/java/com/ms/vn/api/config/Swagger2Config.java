@@ -18,16 +18,16 @@ public class Swagger2Config {
         return new Docket(DocumentationType.SWAGGER_2)
                 .apiInfo(apiInfo())
                 .select()
-                .apis(RequestHandlerSelectors.basePackage("com.didispace.web"))
+                .apis(RequestHandlerSelectors.basePackage("com.ms.vn.api"))
                 .paths(PathSelectors.any())
                 .build();
     }
     private ApiInfo apiInfo() {
         return new ApiInfoBuilder()
                 .title("Spring Boot中使用Swagger2构建RESTful APIs")
-                .description("更多Spring Boot相关文章请关注：http://blog.didispace.com/")
-                .termsOfServiceUrl("http://blog.didispace.com/")
-                .contact("程序猿DD")
+                .description("更多Spring Boot相关接口详解 http://www.baidu.com/")
+                .termsOfServiceUrl("http://www.baidu.com/")
+                .contact("Kyle")
                 .version("1.0")
                 .build();
     }

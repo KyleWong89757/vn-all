@@ -71,6 +71,9 @@
             <plugin>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
+                <configuration>
+                    <classifier>exec</classifier>
+                </configuration>
             </plugin>
             <!-- Mybatis-Generator插件，自动生成代码 -->
             <plugin>

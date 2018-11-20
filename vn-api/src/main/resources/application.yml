@@ -2,6 +2,8 @@ server:
   port: 8080
 
 spring:
+  profiles:
+    active: dev
   datasource:
     name: mybatis_test
     #使用druid连接池
@@ -67,3 +69,9 @@ pagehelper:
   supportMethodsArguments: true
   params: count=countSql
   returnPageInfo: check
+#日志配置,输出到文本，
+logging:
+  path: C:/mylog/nnlog
+  appname: vn-api
+  #idea控制台默认日志级别修改
+debug: true

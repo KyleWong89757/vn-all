@@ -18,7 +18,7 @@ public class ScheduleJobInit implements ApplicationRunner {
     @Autowired
     private Scheduler scheduler;
 
-    @Autowired()
+    @Autowired
     private Map<String, Job> jobsMap;
 
 //    public Map<String, QuartzJobBean> getJobsMap() {
